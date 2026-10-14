@@ -28,15 +28,17 @@
 #     need to fix that right away
 #
 # How to rebalance:
-# * (simple): 
+# * (simple):
 #     (1) Get a list of nodes from an inorder traversal
 #     (2) Set "center" node as the new root
 #     (3) Balance left and right "sides" of list, setting result
 #         as the left and right children of the root (respectively)
-from sept25 import BinaryTreeNode
 import collections
 
-class BinarySearchTree():
+from sept25 import BinaryTreeNode
+
+
+class BinarySearchTree:
     def __init__(self):
         self._root = None
         self._size = 0
@@ -47,17 +49,19 @@ class BinarySearchTree():
         elif self._root.getElement() >= element:
             self._root.getLeft().insert(element)
         else:
-            self._root.getRight().insert(element)
+            self._root.getRight().insert(
+                element
+            )  # The "iterator" design pattern involves an object that has two functions:
 
-    # The "iterator" design pattern involves an object that has two functions:
-    # has_next() and next(). We'll implement an iterator for our 
+    # has_next() and next(). We'll implement an iterator for our
     # BinarySearchTree class ... next week? Friday in a recorded lecture?
     def __iter__(self):
         return None
 
+
 # A few samples for our main method
 
-if __name__=='__main__':
+if __name__ == "__main__":
     node1 = BinaryTreeNode(10, None, None)
     node2 = BinaryTreeNode(20, None, None)
 
@@ -70,7 +74,7 @@ if __name__=='__main__':
     # OK, can I do a similar thing with the iterator for a data structure?
     # -- Yes! --
     # In fact, we expect collections to be iterable in Python!
-    my_list = collections.deque() # [] () set() {}
+    my_list = collections.deque()  # [] () set() {}
 
     for element in my_list:
         print(element)
@@ -80,7 +84,7 @@ if __name__=='__main__':
     for element in tree:
         print(element)
 
-    '''
+    """
     # Build a binary search tree
     for value in range(10):
         tree.insert(value)
@@ -90,4 +94,4 @@ if __name__=='__main__':
     # like this!?!?!??!?!?!?!
     for value in tree:
         print("Tree contains", value)
-    '''
+    """

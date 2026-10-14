@@ -5,40 +5,41 @@
 
 
 # Repeating (and completing) the tree from sept23.py:
-class BinaryTreeNode():
-    def __init__(self, element, left, right):
+class BinaryTreeNode:
+    def __init__(self, element, left, right) -> None:
         self._element = element
-        self._left = left
-        self._right = right
+        self._left: BinaryTreeNode = left
+        self._right: BinaryTreeNode = right
 
     def getElement(self):
         return self._element
-    
+
     def getLeft(self):
         return self._left
 
     def getRight(self):
         return self._right
 
-    def setLeft(self, left):
+    def setLeft(self, left) -> None:
         self._left = left
 
-    def setRight(self, right):
+    def setRight(self, right) -> None:
         self._right = right
 
-    def __gt__(self, other_node):
+    def __gt__(self, other_node) -> bool:
         return self._element > other_node._element
 
-class BinaryTree():
+
+class BinaryTree:
     def __init__(self):
         self._root = None
         self._size = 0
 
     # Insert into the tree, maintaining the completeness property
     def insert(self, element):
-        pass # we'll come back to this!
+        pass  # we'll come back to this!
 
-# It might be helpful to discuss "tree traversals" first!
+    # It might be helpful to discuss "tree traversals" first!
 
     # This function returns a list of the *nodes* in the tree,
     # given in the order they are visited in a preorder traversal
@@ -50,15 +51,17 @@ class BinaryTree():
     #  / \ / \
     # 2  3 5  6
     # would return [0 1 2 3 4 5 6]
-    def preorder_traversal(self):
+    def preorder_traversal(self) -> list[BinaryTreeNode]:
         if self._root is None:
             return []
         else:
-            return [self._root] + \
-                    self._root.getLeft().preorder_traversal() + \
-                    self._root.getRight().preorder_traversal()
+            return (
+                [self._root]
+                + self._root.getLeft().preorder_traversal()
+                + self._root.getRight().preorder_traversal()
+            )
 
-    # Processes the left subtree, then the node, then the 
+    # Processes the left subtree, then the node, then the
     # right subtree
     # e.g.: the tree
     #     3
@@ -67,7 +70,7 @@ class BinaryTree():
     #  / \ / \
     # 0  2 4  6
     # would return [0 1 2 3 4 5 6]
-    def inorder_traversal(self):
+    def inorder_traversal(self) -> list:
         return []
 
     # Processes the left subtree, the right subtree, and then
@@ -79,8 +82,9 @@ class BinaryTree():
     #  / \ / \
     # 0  1 3  4
     # would return [0 1 2 3 4 5 6]
-    def postorder_traversal(self):
+    def postorder_traversal(self) -> list:
         return []
+
 
 # A few comments on traversals:
 # * a "binary search tree" is one where all nodes in the left subtree
@@ -97,7 +101,7 @@ class BinaryTree():
 #    the last level's children are all "aligned to the left"
 #  * a node's level is equal to the distance from that node to the root
 #    (so the root's level is 0)
-#  * the "height" of the tree is the "distance" between the root and the 
+#  * the "height" of the tree is the "distance" between the root and the
 #    "lowest" child + 1
 #    * suppose I have a height of x and it is a complete binary tree. How many
 #      nodes are in the tree (give a range)?
